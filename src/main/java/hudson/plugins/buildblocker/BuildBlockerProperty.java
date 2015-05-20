@@ -60,6 +60,8 @@ public class BuildBlockerProperty extends JobProperty<Job<?, ?>> {
      * blocking jobs form field name
      */
     public static final String BLOCKING_JOBS_KEY = "blockingJobs";
+    
+    public static final String BLOCKING_JOBS_PARAMS = "blockingJobsParams";
 
     /**
      * flag if build blocker should be used
@@ -70,6 +72,8 @@ public class BuildBlockerProperty extends JobProperty<Job<?, ?>> {
      * the job names that block the build if running
      */
     private String blockingJobs;
+    
+    private String blockingJobsParams;
 
     /**
      * Returns true if the build blocker is enabled.
@@ -103,6 +107,14 @@ public class BuildBlockerProperty extends JobProperty<Job<?, ?>> {
     public void setBlockingJobs(String blockingJobs) {
         this.blockingJobs = blockingJobs;
     }
+    
+	public String getBlockingJobsParams() {
+		return blockingJobsParams;
+	}
+
+	public void setBlockingJobsParams(String blockingJobsParams) {
+		this.blockingJobsParams = blockingJobsParams;
+	}
 
     /**
      * Descriptor
@@ -143,6 +155,7 @@ public class BuildBlockerProperty extends JobProperty<Job<?, ?>> {
                 try {
                     buildBlockerProperty.setUseBuildBlocker(true);
                     buildBlockerProperty.setBlockingJobs(formData.getJSONObject(USE_BUILD_BLOCKER).getString(BLOCKING_JOBS_KEY));
+                    buildBlockerProperty.setBlockingJobsParams(formData.getJSONObject(USE_BUILD_BLOCKER).getString(BLOCKING_JOBS_PARAMS));
 
                 } catch(JSONException e) {
                     buildBlockerProperty.setUseBuildBlocker(false);

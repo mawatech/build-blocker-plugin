@@ -27,6 +27,9 @@
         <f:entry title="${%Blocking jobs}" field="blockingJobs">
             <f:textarea />
         </f:entry>
+        <f:entry title="${%Blocking jobs params}" field="blockingJobsParams">
+            <f:textarea />
+        </f:entry>
         <f:entry title="">
         <div align="right">
         <f:validateButton title="Validate Regex" progress="Checking..."

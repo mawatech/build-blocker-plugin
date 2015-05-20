@@ -86,7 +86,7 @@ public class BuildBlockerQueueTaskDispatcherTest extends HudsonTestCase {
         causeOfBlockage = dispatcher.canRun(item);
         assertNotNull(causeOfBlockage);
 
-        assertTrue(causeOfBlockage.getShortDescription().contains(" by " + blockingJobName + "."));
+        assertTrue(causeOfBlockage.getShortDescription().contains(" by " + blockingJobName));
 
         while(!(future1.isDone() && future2.isDone() && future3.isDone())) {
             // wait until jobs are done.
@@ -123,7 +123,7 @@ public class BuildBlockerQueueTaskDispatcherTest extends HudsonTestCase {
         // check if job2 was not started before job1 was finished
         Run theRun1 = theJob1.getLastBuild();
         Run theRun2 = theJob2.getLastBuild();
-        assertTrue( theRun1.getTimeInMillis() + theRun1.getDuration() <= theRun2.getTimeInMillis() );
+        assertTrue(theRun1.getTimeInMillis() + theRun1.getDuration() + "<=" + theRun2.getTimeInMillis(), theRun1.getTimeInMillis() + theRun1.getDuration() <= theRun2.getTimeInMillis() );
 
         // restore changed settings
         Hudson.getInstance().setNumExecutors( theOldNumExecutors );

@@ -76,15 +76,16 @@ public class BuildBlockerQueueTaskDispatcher extends QueueTaskDispatcher {
 
             if(property != null) {
                 String blockingJobs = property.getBlockingJobs();
+                String params = property.getBlockingJobsParams();
 
-                SubTask subTask = new BlockingJobsMonitor(blockingJobs).getBlockingJob(item);
+                SubTask subTask = new BlockingJobsMonitor(blockingJobs).getBlockingJob(item, params);
 
                 if(subTask != null) {
                     if(subTask instanceof MatrixConfiguration) {
                         subTask = ((MatrixConfiguration) subTask).getParent();
                     }
 
-                    return CauseOfBlockage.fromMessage(Messages._BlockingJobIsRunning(item.getInQueueForString(), subTask.getDisplayName()));
+                    return CauseOfBlockage.fromMessage(Messages._BlockingJobIsRunning(item.getInQueueForString(), subTask.getDisplayName() + " " + params));
                 }
             }
         }

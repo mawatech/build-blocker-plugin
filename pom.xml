@@ -29,7 +29,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.466</version>
+    <version>1.614</version>
   </parent>
 
   <artifactId>build-blocker-plugin</artifactId>
@@ -87,6 +87,14 @@
     <compileTarget>1.6</compileTarget>
     <maven.version>3.0.4</maven.version>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>matrix-project</artifactId>
+      <version>1.4.1</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <pluginManagement>
